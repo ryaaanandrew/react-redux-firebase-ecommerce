@@ -3,8 +3,10 @@ import './styles.scss';
 
 const Header = () => {
     return(
-        <header className="myHeader">
-            my Header
+        <header className="header">
+            <div className="header__container">
+                <div className="header__logo">Logo</div>
+            </div>
         </header>
     );
 };

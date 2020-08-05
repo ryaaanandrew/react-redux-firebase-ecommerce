@@ -1,4 +1,18 @@
-.myHeader {
-    height: 6.5rem;
+.header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.288);
+    height: 10rem;
+    
+    &__container {
+        height: 100%;
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    &__logo {
+        position: absolute;
+        top: 50%;
+        left: 10rem;
+        transform: translateY(-50%);
+    }
 }
