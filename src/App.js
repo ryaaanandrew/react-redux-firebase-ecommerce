@@ -5,14 +5,14 @@ import Header from './components/Header';
 import Homepage from './pages/Homepage';
 import Registration from './pages/Registration';
 import MainLayout from './components/Layout/MainLayout';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
+    <div className="app">
       <MainLayout>
-        <Route exact path='/' component={Homepage} />
-        <Route path='/registration' component={Registration} />
+        <Route exact path='/' render={() => <Homepage />} />
+        <Route path='/registration' render={() => <Registration />} />
       </MainLayout>
     </div>
   );

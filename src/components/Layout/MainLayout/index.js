@@ -1,12 +1,18 @@
 import React from 'react';
+import Header from '../../Header';
+import Footer from '../../Footer';
 import './styles.scss';
 
 const MainLayout = (props) => {
-    return(
-        <div className="mainLayout">
-            { props.children }
-        </div>
-    );
+	return(
+		<React.Fragment>
+			<Header />
+			<div className="mainLayout">
+					{ props.children }
+			</div>
+			<Footer />
+		</React.Fragment>
+	);
 };
 
 export default MainLayout;
