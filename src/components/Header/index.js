@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { auth } from '../../firebase/utils';
 import './styles.scss';
 
 const Header = (props) => {
@@ -14,8 +15,8 @@ const Header = (props) => {
                 <div className="header__logo"><Link to='/'>Logo</Link></div>
                 { currentUser && (
                     <>
-                        <div className="header__logo">Hello, {currentUser.displayName}</div>
-                        <div className="header__logo"><Link to='/logout'>Logout</Link></div>
+                        <div className="header__logo">Hello, { currentUser.displayName }</div>
+                        <div className="header__logo" onClick={() => auth.signOut()}>Logout</div>
                     </>
                 )}
 
