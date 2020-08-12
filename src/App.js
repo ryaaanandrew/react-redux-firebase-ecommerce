@@ -1,21 +1,53 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import { auth } from './firebase/utils';
 import './default.scss';
 import Homepage from './pages/Homepage';
 import Registration from './pages/Registration';
 import MainLayout from './components/Layout/MainLayout';
 import Login from './pages/Login';
 
-function App() {
-  return (
-    <div className="app">
-      <MainLayout>
-        <Route exact path='/' render={() => <Homepage />} />
-        <Route path='/registration' render={() => <Registration />} />
-        <Route path='/login' render={() => <Login />} />
-      </MainLayout>
-    </div>
-  );
-}
+const initialState = {
+  user: null
+};
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ...initialState
+    };
+  };
+
+  authListener = null;
+
+  componentDidMount() {
+    this.authListener = auth.onAuthStateChanged(userAuth => {
+      if(!userAuth) return;
+
+      this.setState({
+        currentUser: userAuth
+      });
+    });
+  };
+
+  componentWillUnmount() {
+    console.log('unmounting...')
+    this.authListener()
+  };
+
+  render() {
+    const { currentUser } = this.state;
+    return (
+      <div className="app">
+        <MainLayout currentUser={ currentUser }>
+          <Route exact path='/' render={() => <Homepage />} />
+          <Route path='/registration' render={() => <Registration />} />
+          <Route path='/login' render={() => <Login />} />
+        </MainLayout>
+      </div>
+    );
+  };
+};
 
 export default App;

@@ -12,14 +12,14 @@ const Directory = props => {
                     style={{
                         backgroundImage: `url(${shopMens})`
                     }}>
-                        <a className="directory__link" href="#">Shop Mens</a>
+                        <a className="directory__link" href="www.google.com">Shop Mens</a>
                 </div>
                 <div 
                     className="card"
                     style={{
                         backgroundImage: `url(${shopWomens})`
                     }}>
-                        <a className="directory__link" href="#">Shop Womens</a>
+                        <a className="directory__link" href="www.google.com">Shop Womens</a>
                 </div>
             </div>
         </div>
