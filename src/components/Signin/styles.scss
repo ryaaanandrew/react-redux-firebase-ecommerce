@@ -1,0 +1,16 @@
+.signin {
+    margin: 0 auto;
+
+    &__container {
+        border: 1px solid blue;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    & {
+        text-transform: uppercase;
+    }
+}

@@ -1,0 +1,9 @@
+export const firebaseConfig = {
+    apiKey: "AIzaSyApHqXRjtsTx3Zj0w4F8NY7743YFzyQSjE",
+    authDomain: "ecommerce-website-bcbb5.firebaseapp.com",
+    databaseURL: "https://ecommerce-website-bcbb5.firebaseio.com",
+    projectId: "ecommerce-website-bcbb5",
+    storageBucket: "ecommerce-website-bcbb5.appspot.com",
+    messagingSenderId: "607539758452",
+    appId: "1:607539758452:web:67688cf68cb38be70d9821"
+};

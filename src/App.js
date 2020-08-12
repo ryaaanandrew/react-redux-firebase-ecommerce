@@ -1,21 +1,66 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { auth, handleUserProfile } from './firebase/utils';
 import './default.scss';
-import Header from './components/Header';
 import Homepage from './pages/Homepage';
 import Registration from './pages/Registration';
 import MainLayout from './components/Layout/MainLayout';
-import Footer from './components/Footer';
+import Login from './pages/Login';
 
-function App() {
-  return (
-    <div className="app">
-      <MainLayout>
-        <Route exact path='/' render={() => <Homepage />} />
-        <Route path='/registration' render={() => <Registration />} />
-      </MainLayout>
-    </div>
-  );
-}
+const initialState = {
+  user: null
+};
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ...initialState
+    };
+  };
+
+  authListener = null;
+
+  componentDidMount() {
+    this.authListener = auth.onAuthStateChanged(async userAuth => {
+      if(userAuth) {
+        const userRef = await handleUserProfile(userAuth);
+        userRef.onSnapshot(snapshot => {
+          this.setState({
+            currentUser: {
+              id: snapshot.id,
+              ...snapshot.data()
+            }
+          })
+        })
+      };
+
+      this.setState({
+        ...initialState
+      })
+    });
+  };
+
+  componentWillUnmount() {
+    console.log('unmounting...')
+    this.authListener()
+  };
+
+  render() {
+    const { currentUser } = this.state;
+    return (
+      <div className="app">
+        <MainLayout currentUser={ currentUser }>
+          <Route exact path='/' render={() => <Homepage />} />
+          <Route path='/registration' render={() => <Registration />} />
+          <Route 
+            path='/login' 
+            render={() => currentUser ? <Redirect to='/' /> : <Login />} 
+          />
+        </MainLayout>
+      </div>
+    );
+  };
+};
 
 export default App;
