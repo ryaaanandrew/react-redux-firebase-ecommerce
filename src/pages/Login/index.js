@@ -1,8 +1,14 @@
 import React from 'react';
+import Signin from '../../components/Signin';
+import './styles.scss';
 
 const Login = props => {
     return(
-        <h1>Login Page</h1>
+        <div className="login">
+            <div className="login__container">
+                <Signin />
+            </div>
+        </div>
     );
 };
 
